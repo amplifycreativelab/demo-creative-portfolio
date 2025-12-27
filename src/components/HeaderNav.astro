@@ -1,0 +1,71 @@
+﻿---
+import styles from "./HeaderNav.module.css";
+import { navItems, site } from "../data/site";
+import { withBase } from "../utils/paths";
+---
+<header class={styles.header} data-menu data-state="closed">
+  <div class="container">
+    <div class={styles.inner}>
+      <a class={styles.logo} href={withBase("")}>{site.name}</a>
+      <button
+        class={styles.menuToggle}
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle menu"
+        data-menu-toggle
+      >
+        <span class={styles.menuText}>Menu</span>
+        <span class={styles.menuTextOpen}>Close</span>
+        <span class={styles.menuIcon} aria-hidden="true"></span>
+      </button>
+      <nav class={styles.nav} id="primary-nav" aria-label="Primary" data-menu-panel>
+        <div class={styles.links}>
+          {navItems.map((item) => (
+            <a class={styles.link} href={withBase(item.href)}>{item.label}</a>
+          ))}
+        </div>
+        <a class={styles.cta} href={withBase("contact/")}>{site.cta.primary}</a>
+      </nav>
+    </div>
+  </div>
+  <div class={styles.mobileOverlay} data-menu-overlay></div>
+</header>
+
+<script>
+  const header = document.querySelector("[data-menu]");
+  if (header) {
+    const toggle = header.querySelector("[data-menu-toggle]");
+    const overlay = header.querySelector("[data-menu-overlay]");
+    const links = header.querySelectorAll("nav a");
+
+    const setOpen = (isOpen) => {
+      header.dataset.state = isOpen ? "open" : "closed";
+      document.body.style.overflow = isOpen ? "hidden" : "";
+      if (toggle) toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const isOpen = header.dataset.state !== "open";
+        setOpen(isOpen);
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener("click", () => setOpen(false));
+    }
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) setOpen(false);
+    });
+  }
+</script>

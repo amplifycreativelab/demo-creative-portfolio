@@ -1,0 +1,83 @@
+﻿.hero {
+  padding-bottom: var(--space-6);
+}
+
+.heroText {
+  grid-column: span 7;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.heroIntro {
+  color: var(--color-muted);
+}
+
+.heroCard {
+  grid-column: span 5;
+  padding: var(--space-4);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  position: relative;
+}
+
+.heroCard::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(23, 18, 15, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.heroCard ul {
+  margin: var(--space-2) 0 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: var(--space-1);
+  color: var(--color-ink-soft);
+}
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--space-4);
+}
+
+.process p {
+  color: var(--color-muted);
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.trustBlock {
+  padding: var(--space-4);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.trustBlock p {
+  color: var(--color-muted);
+}
+
+.cta {
+  padding-bottom: var(--space-7);
+}
+
+@media (max-width: 900px) {
+  .heroText,
+  .heroCard {
+    grid-column: 1 / -1;
+  }
+
+  .process,
+  .trust {
+    grid-template-columns: 1fr;
+  }
+}

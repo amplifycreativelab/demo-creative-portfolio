@@ -1,0 +1,28 @@
+﻿.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, rgba(15, 118, 110, 0.08), rgba(255, 250, 243, 0.9));
+}
+
+.title {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+@media (max-width: 720px) {
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

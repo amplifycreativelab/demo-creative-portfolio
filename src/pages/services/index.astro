@@ -1,0 +1,76 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import Button from "../../components/Button.astro";
+import CTAInline from "../../components/CTAInline.astro";
+import { serviceHighlights, site } from "../../data/site";
+import { withBase } from "../../utils/paths";
+import styles from "./_index.module.css";
+---
+<BaseLayout title="Services" description="Editorial services for web, brand, photography, and content systems.">
+  <section class={styles.hero}>
+    <div class="container">
+      <p class="kicker">Services</p>
+      <h1>Choose a service or bundle.</h1>
+      <p class={styles.heroText}>
+        Flexible engagements built for clarity, pace, and conversion.
+      </p>
+    </div>
+  </section>
+
+  <Section kicker="Services" title="Core disciplines" intro="Pick a single discipline or combine for a full launch.">
+    <div class={styles.cards}>
+      {serviceHighlights.map((service) => (
+        <article class={styles.card}>
+          <h3>{service.title}</h3>
+          <p>{service.summary}</p>
+          <p class={styles.cardMeta}>Typical timeline: 4-8 weeks</p>
+          <Button href={withBase("contact/")} variant="secondary">Get a quote</Button>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section kicker="Bundles" title="Studio bundles" intro="Designed for fast launches without cutting quality.">
+    <div class={styles.bundles}>
+      <article class={styles.bundle}>
+        <h3>Launch Kit</h3>
+        <p>Brand strategy, identity system, and a 5-page website build.</p>
+        <p class={styles.bundleMeta}>Ideal for new hospitality or lifestyle brands.</p>
+      </article>
+      <article class={styles.bundle}>
+        <h3>Hospitality Content Pack</h3>
+        <p>Food photography, social templates, and seasonal campaign assets.</p>
+        <p class={styles.bundleMeta}>Designed for restaurants and boutique venues.</p>
+      </article>
+    </div>
+  </Section>
+
+  <Section kicker="FAQ" title="Answers before we start">
+    <div class={styles.faq}>
+      <details>
+        <summary>What are your typical timelines?</summary>
+        <p>Most projects run 6-12 weeks depending on scope and feedback loops.</p>
+      </details>
+      <details>
+        <summary>Do you offer ongoing support?</summary>
+        <p>Yes. We offer retainers for content, optimization, and seasonal campaigns.</p>
+      </details>
+      <details>
+        <summary>Can you work with existing development teams?</summary>
+        <p>Absolutely. We provide design systems and handoff documentation.</p>
+      </details>
+    </div>
+  </Section>
+
+  <section class={styles.cta}>
+    <div class="container">
+      <CTAInline
+        title="Ready to build something sharp?"
+        text={`Tell us what you need and we will reply within two business days.`}
+        ctaLabel={site.cta.primary}
+        href="contact/"
+      />
+    </div>
+  </section>
+</BaseLayout>

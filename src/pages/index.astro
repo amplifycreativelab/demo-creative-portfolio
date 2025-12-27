@@ -1,0 +1,145 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Button from "../components/Button.astro";
+import CaseStudyCard from "../components/CaseStudyCard.astro";
+import StatsStrip from "../components/StatsStrip.astro";
+import TestimonialQuote from "../components/TestimonialQuote.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import heroImage from "../assets/images/projects/dockside-hotel-redesign/hero.webp";
+import { site, serviceHighlights, processSteps, metrics } from "../data/site";
+import { withBase } from "../utils/paths";
+import styles from "./_index.module.css";
+
+const caseStudies = await getCollection("caseStudies");
+const featured = caseStudies.filter((entry) => entry.data.featured);
+---
+
+<BaseLayout>
+  <section class={styles.hero}>
+    <div class="container grid-12">
+      <div class:list={[styles.heroText, "fade-up"]}>
+        <p class="kicker">Concept creative studio</p>
+        <h1 class={styles.heroTitle}>
+          Case studies that look beautiful and convert.
+        </h1>
+        <p class={styles.heroDek}>
+          We build editorial-grade brand, web, and content systems designed to
+          move the metrics that matter.
+        </p>
+        <div class={styles.heroActions}>
+          <Button href={withBase("contact/")}>{site.cta.primary}</Button>
+          <Button href={withBase("work/")} variant="secondary"
+            >{site.cta.secondary}</Button
+          >
+        </div>
+        <div class={styles.heroTrust}>
+          <span>Web</span>
+          <span>Branding</span>
+          <span>Photo</span>
+          <span>Content</span>
+        </div>
+      </div>
+      <div class:list={[styles.heroMedia, "fade-up", "delay-1"]}>
+        <Image
+          src={heroImage}
+          alt="Dockside Hotel Hero"
+          width={1200}
+          height={900}
+          priority
+        />
+        <p class={styles.heroCaption}>
+          Dockside Hotel - Web Design - +42% direct bookings
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      <hr class="rule" />
+    </div>
+  </section>
+
+  <Section
+    kicker="Editors picks"
+    title="Featured work"
+    intro="Three case studies shaping the studio this quarter."
+  >
+    <div class:list={[styles.featuredGrid, "fade-up", "delay-1"]}>
+      {featured.map((entry) => <CaseStudyCard entry={entry} />)}
+    </div>
+  </Section>
+
+  <Section
+    kicker="Services"
+    title="Editorial services"
+    intro="A small studio offering focused, high-impact collaborations."
+  >
+    <div class:list={[styles.servicesList, "fade-up", "delay-2"]}>
+      {
+        serviceHighlights.map((service) => (
+          <article class={styles.serviceItem}>
+            <h3>{service.title}</h3>
+            <p>{service.summary}</p>
+            <a
+              class={styles.serviceLink}
+              href={withBase(`work/?category=${service.category}`)}
+            >
+              See how
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <section class={styles.process}>
+    <div class="container">
+      <div class:list={[styles.processGrid, "fade-up", "delay-1"]}>
+        {
+          processSteps.map((step) => (
+            <div class={styles.processItem}>
+              <h3>{step.title}</h3>
+              <p>{step.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class={styles.metrics}>
+    <div class="container">
+      <StatsStrip items={metrics} />
+    </div>
+  </section>
+
+  <Section kicker="Testimonial" title="Client note">
+    <TestimonialQuote
+      quote="Creative Portfolio brought clarity and pace. The work feels premium and performs."
+      name="Sienna V."
+      role="Marketing Director"
+      location="Central District"
+    />
+  </Section>
+
+  <section class={styles.ctaBand}>
+    <div class="container">
+      <div class={styles.ctaInner}>
+        <div>
+          <p class="kicker">Ready to build something sharp?</p>
+          <h2>Plan a project that delivers on story and performance.</h2>
+        </div>
+        <div class={styles.ctaActions}>
+          <Button href={withBase("contact/")}>{site.cta.primary}</Button>
+          <a
+            class={styles.ctaEmail}
+            href="https://amplifycreativelab.com"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            >amplifycreativelab.com</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

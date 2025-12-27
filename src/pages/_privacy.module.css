@@ -1,0 +1,14 @@
+﻿.privacy {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 760px;
+  padding: var(--space-5);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.privacy h2 {
+  margin-top: var(--space-4);
+  font-size: var(--text-h3);
+}

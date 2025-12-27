@@ -1,0 +1,47 @@
+﻿---
+import styles from "./CaseStudySidebar.module.css";
+
+const { servicesProvided, deliverables, timeline, location, year } = Astro.props;
+
+const deliverableGroups = [
+  { label: "Brand", items: deliverables?.brand ?? [] },
+  { label: "Web", items: deliverables?.web ?? [] },
+  { label: "Photo", items: deliverables?.photo ?? [] },
+  { label: "Content", items: deliverables?.content ?? [] },
+].filter((group) => group.items.length > 0);
+---
+<aside class={styles.sidebar}>
+  <div class={styles.sticky}>
+    <div class={styles.block}>
+      <h3 class={styles.heading}>Quick facts</h3>
+      <ul class={styles.list}>
+        <li>Location: {location}</li>
+        <li>Year: {year}</li>
+        <li>Timeline: {timeline}</li>
+      </ul>
+    </div>
+    <div class={styles.block}>
+      <h3 class={styles.heading}>Services</h3>
+      <ul class={styles.list}>
+        {servicesProvided.map((service) => (
+          <li>{service}</li>
+        ))}
+      </ul>
+    </div>
+    <div class={styles.block}>
+      <h3 class={styles.heading}>Deliverables</h3>
+      <div class={styles.groups}>
+        {deliverableGroups.map((group) => (
+          <div>
+            <p class={styles.groupLabel}>{group.label}</p>
+            <ul class={styles.list}>
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</aside>

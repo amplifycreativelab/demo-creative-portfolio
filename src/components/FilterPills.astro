@@ -1,0 +1,42 @@
+﻿---
+import styles from "./FilterPills.module.css";
+
+const { categories } = Astro.props;
+---
+<div class={styles.pills} data-filter-pills>
+  {categories.map((category, index) => (
+    <button
+      class={styles.pill}
+      type="button"
+      data-filter={category.value}
+      aria-pressed={index === 0 ? "true" : "false"}
+    >
+      {category.label}
+    </button>
+  ))}
+</div>
+
+<script>
+  const container = document.querySelector("[data-filter-pills]");
+  if (container) {
+    const buttons = Array.from(container.querySelectorAll("button[data-filter]"));
+    const items = Array.from(document.querySelectorAll("[data-filter-item]"));
+    const setActive = (filter) => {
+      buttons.forEach((button) => {
+        const isActive = button.dataset.filter === filter;
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+      items.forEach((item) => {
+        const matches = filter === "all" || item.dataset.category === filter;
+        item.classList.toggle("is-hidden", !matches);
+      });
+    };
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setActive(button.dataset.filter));
+    });
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get("category") || "all";
+    const hasMatch = buttons.some((button) => button.dataset.filter === initial);
+    setActive(hasMatch ? initial : "all");
+  }
+</script>

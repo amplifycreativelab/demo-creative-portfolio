@@ -1,0 +1,70 @@
+﻿---
+import styles from "./GalleryGrid.module.css";
+import { Image } from "astro:assets";
+
+const { images, captions = [], credits = [], id = "gallery" } = Astro.props;
+---
+<div id={id} class={styles.grid}>
+  {images.map((image, index) => (
+    <figure class={styles.figure}>
+      <a class={styles.thumb} href={`#${id}-lightbox-${index}`}>
+        <Image
+          src={image}
+          alt={captions[index] ?? "Gallery image"}
+          width={720}
+          height={960}
+          loading="lazy"
+        />
+      </a>
+      <figcaption class={styles.caption}>
+        <span>{captions[index]}</span>
+        <span class={styles.credit}>{credits[index]}</span>
+      </figcaption>
+    </figure>
+  ))}
+</div>
+
+<div class={styles.lightboxes}>
+  {images.map((image, index) => (
+    <div
+      id={`${id}-lightbox-${index}`}
+      class={styles.lightbox}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image preview"
+      data-lightbox
+    >
+      <a
+        class={styles.close}
+        href={`#${id}`}
+        aria-label="Close"
+        data-lightbox-close
+      >
+        Close
+      </a>
+      <div class={styles.lightboxInner}>
+        <Image src={image} alt={captions[index] ?? "Gallery image"} width={1200} height={1600} />
+        <p class={styles.lightboxCaption}>{captions[index]}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script define:vars={{ galleryId: id }}>
+  const focusClose = () => {
+    const active = document.querySelector(":target[data-lightbox]");
+    if (!active) return;
+    const closeButton = active.querySelector("[data-lightbox-close]");
+    if (closeButton) closeButton.focus();
+  };
+  const closeLightbox = () => {
+    if (window.location.hash.includes("lightbox")) {
+      window.location.hash = `#${galleryId}`;
+    }
+  };
+  window.addEventListener("hashchange", focusClose);
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeLightbox();
+  });
+  focusClose();
+</script>

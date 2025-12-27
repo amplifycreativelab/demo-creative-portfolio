@@ -1,0 +1,116 @@
+﻿.grid {
+  column-count: 2;
+  column-gap: var(--space-4);
+}
+
+.figure {
+  break-inside: avoid;
+  margin: 0 0 var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.thumb {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+}
+
+.thumb img {
+  width: 100%;
+  height: auto;
+  transition: transform var(--transition-slow);
+}
+
+.thumb:hover img {
+  transform: scale(1.02);
+}
+
+.caption {
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  display: grid;
+  gap: 2px;
+}
+
+.credit {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+}
+
+.lightboxes {
+  display: contents;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  z-index: 20;
+}
+
+.lightbox:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightboxInner {
+  background: var(--color-paper);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  overflow: auto;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lightboxInner img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-rule);
+}
+
+.lightboxCaption {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.close {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    column-count: 1;
+  }
+
+  .close {
+    top: var(--space-3);
+    right: var(--space-3);
+  }
+}

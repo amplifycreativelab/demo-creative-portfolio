@@ -1,0 +1,70 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import CTAInline from "../../components/CTAInline.astro";
+import { site } from "../../data/site";
+import styles from "./_index.module.css";
+---
+<BaseLayout title="About" description="A concept creative studio demo with editorial craft and commercial focus.">
+  <section class={styles.hero}>
+    <div class="container grid-12">
+      <div class={styles.heroText}>
+        <p class="kicker">About</p>
+        <h1>Small studio, sharp outcomes.</h1>
+        <p class={styles.heroIntro}>
+          Creative Portfolio is a concept studio demo blending editorial design, high-performance
+          web builds, and content systems that keep teams moving.
+        </p>
+      </div>
+      <div class={styles.heroCard}>
+        <h3>Principles</h3>
+        <ul>
+          <li>Clarity before polish.</li>
+          <li>Editorial rhythm, commercial intent.</li>
+          <li>Systems that scale with your team.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Section kicker="Process" title="How we run projects">
+    <div class={styles.process}>
+      <div>
+        <h3>Week 1-2</h3>
+        <p>Positioning, audit, and opportunity mapping.</p>
+      </div>
+      <div>
+        <h3>Week 3-6</h3>
+        <p>Design systems, production, and iteration cycles.</p>
+      </div>
+      <div>
+        <h3>Week 7-10</h3>
+        <p>Build, QA, and launch support.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section kicker="Trust" title="Multi-industry focus" intro="We work across hospitality, wellness, retail, and professional services.">
+    <div class={styles.trust}>
+      <div class={styles.trustBlock}>
+        <h3>Focus areas</h3>
+        <p>{site.areasServed.join(", ")}</p>
+      </div>
+      <div class={styles.trustBlock}>
+        <h3>Outcomes focus</h3>
+        <p>Conversion lifts, brand clarity, and measurable campaign performance.</p>
+      </div>
+    </div>
+  </Section>
+
+  <section class={styles.cta}>
+    <div class="container">
+      <CTAInline
+        title="Plan a project with the studio."
+        text="Share your goals and we will outline a clear path forward."
+        ctaLabel={site.cta.primary}
+        href="contact/"
+      />
+    </div>
+  </section>
+</BaseLayout>

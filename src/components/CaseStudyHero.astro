@@ -1,0 +1,46 @@
+﻿---
+import styles from "./CaseStudyHero.module.css";
+import { Image } from "astro:assets";
+import Button from "./Button.astro";
+import { withBase } from "../utils/paths";
+
+const {
+  title,
+  client,
+  category,
+  location,
+  year,
+  outcome,
+  heroImage,
+  heroCaption,
+} = Astro.props;
+---
+<section class={styles.hero}>
+  <div class="container grid-12">
+    <div class:list={[styles.text, "fade-up"]}>
+      <p class="kicker">Case study</p>
+      <h1 class={styles.title}>{title}</h1>
+      <p class={styles.dek}>{outcome}</p>
+      <div class={styles.meta}>
+        <span>{client}</span>
+        <span>{category}</span>
+        <span>{location}</span>
+        <span>{year}</span>
+      </div>
+      <Button href={withBase("contact/")}>Get a quote</Button>
+    </div>
+    <div class:list={[styles.media, "fade-up", "delay-1"]}>
+      <Image
+        src={heroImage}
+        alt={`${client} hero`}
+        width={1200}
+        height={900}
+        priority
+      />
+      <p class={styles.caption}>{heroCaption}</p>
+    </div>
+  </div>
+  <div class="container">
+    <hr class="rule" />
+  </div>
+</section>

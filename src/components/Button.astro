@@ -1,0 +1,10 @@
+﻿---
+import styles from "./Button.module.css";
+
+const { href, variant = "primary", type = "button", ...rest } = Astro.props;
+const Tag = href ? "a" : "button";
+const className = styles[variant] ?? styles.primary;
+---
+<Tag class={className} href={href} type={href ? undefined : type} {...rest}>
+  <slot />
+</Tag>

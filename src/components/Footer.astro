@@ -1,0 +1,57 @@
+---
+import styles from "./Footer.module.css";
+import { site, serviceHighlights } from "../data/site";
+import { withBase } from "../utils/paths";
+
+const year = new Date().getFullYear();
+const mainSiteUrl = "https://amplifycreativelab.com";
+---
+<footer class={styles.footer}>
+  <div class="container">
+    <div class={styles.grid}>
+      <div class={styles.block}>
+        <p class={styles.brand}>{site.name}</p>
+        <p class={styles.tagline}>{site.tagline}</p>
+        <p class={styles.meta}>Concept demo</p>
+        <a
+          class={styles.link}
+          href={mainSiteUrl}
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          >amplifycreativelab.com</a
+        >
+      </div>
+      <div class={styles.block}>
+        <h3 class={styles.heading}>Focus areas</h3>
+        <p class={styles.areas}>{site.areasServed.join(" • ")}</p>
+      </div>
+      <div class={styles.block}>
+        <h3 class={styles.heading}>Services</h3>
+        <ul class={styles.list}>
+          {serviceHighlights.map((service) => (
+            <li>{service.title}</li>
+          ))}
+        </ul>
+      </div>
+      <div class={styles.block}>
+        <h3 class={styles.heading}>Connect</h3>
+        <div class={styles.links}>
+          <a class={styles.link} href={withBase("work/")}>Work</a>
+          <a class={styles.link} href={withBase("services/")}>Services</a>
+          <a class={styles.link} href={withBase("about/")}>About</a>
+          <a class={styles.link} href={withBase("contact/")}>Contact</a>
+          <a class={styles.link} href={withBase("privacy/")}>Privacy</a>
+        </div>
+        <div class={styles.socials}>
+          {site.socials.map((social) => (
+            <a class={styles.link} href={social.href}>{social.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+    <div class={styles.base}>
+      <span>Non-indexed portfolio concept</span>
+      <span>c {year} {site.name}</span>
+    </div>
+  </div>
+</footer>

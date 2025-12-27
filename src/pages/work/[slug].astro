@@ -1,0 +1,115 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CaseStudyHero from "../../components/CaseStudyHero.astro";
+import CaseStudySidebar from "../../components/CaseStudySidebar.astro";
+import CaseStudySection from "../../components/CaseStudySection.astro";
+import GalleryGrid from "../../components/GalleryGrid.astro";
+import StatsStrip from "../../components/StatsStrip.astro";
+import TestimonialQuote from "../../components/TestimonialQuote.astro";
+import Button from "../../components/Button.astro";
+import CTAInline from "../../components/CTAInline.astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../../utils/paths";
+import styles from "./_[slug].module.css";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("caseStudies");
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).toString();
+const pageUrl = new URL(`work/${entry.slug}/`, siteUrl).toString();
+const heroPath = data.heroImage.src.startsWith("/")
+  ? data.heroImage.src.slice(1)
+  : data.heroImage.src;
+const ogImage = new URL(heroPath, siteUrl).toString();
+
+const deliverableGroups = [
+  { label: "Brand", items: data.deliverables?.brand ?? [] },
+  { label: "Web", items: data.deliverables?.web ?? [] },
+  { label: "Photo", items: data.deliverables?.photo ?? [] },
+  { label: "Content", items: data.deliverables?.content ?? [] },
+].filter((group) => group.items.length > 0);
+---
+<BaseLayout title={data.seo?.title ?? data.title} description={data.seo?.description ?? data.resultsSummary} ogImage={ogImage}>
+  <CaseStudyHero
+    title={data.title}
+    client={data.client}
+    category={data.category}
+    location={data.location}
+    year={data.year}
+    outcome={data.outcome}
+    heroImage={data.heroImage}
+    heroCaption={data.heroCaption}
+  />
+
+  <section class={styles.body}>
+    <div class="container grid-12">
+      <div class={styles.main}>
+        <div class={styles.sections}>
+          <CaseStudySection title="The problem" items={data.problem} />
+          <CaseStudySection title="Constraints" items={data.constraints} />
+          <CaseStudySection title="The approach" items={data.approach} />
+        </div>
+
+        <section class={styles.results}>
+          <h2>The result</h2>
+          <p>{data.resultsSummary}</p>
+          <StatsStrip items={data.metrics} />
+        </section>
+
+        <section class={styles.gallery}>
+          <h2>Gallery</h2>
+          <GalleryGrid images={data.galleryImages} captions={data.galleryCaptions} credits={data.galleryCredits} />
+        </section>
+
+        <section class={styles.deliverables}>
+          <h2>Deliverables</h2>
+          <div class={styles.deliverableGrid}>
+            {deliverableGroups.map((group) => (
+              <div class={styles.deliverableGroup}>
+                <p class={styles.groupLabel}>{group.label}</p>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <TestimonialQuote
+          quote={data.testimonial.quote}
+          name={data.testimonial.name}
+          role={data.testimonial.role}
+          location={data.location}
+        />
+
+        <CTAInline
+          title={data.cta ?? "Want results like this?"}
+          text="Share your goals and we will map the right scope and timeline."
+          ctaLabel="Start a project"
+        />
+
+        <div class={styles.secondaryCta}>
+          <Button href={withBase("contact/")} variant="secondary">Get a quote</Button>
+          <a class={styles.availability} href={withBase("contact/")}>Check availability</a>
+        </div>
+      </div>
+
+      <CaseStudySidebar
+        servicesProvided={data.servicesProvided}
+        deliverables={data.deliverables}
+        timeline={data.timeline}
+        location={data.location}
+        year={data.year}
+      />
+    </div>
+  </section>
+</BaseLayout>

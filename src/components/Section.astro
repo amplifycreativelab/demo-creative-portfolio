@@ -1,0 +1,16 @@
+﻿---
+import styles from "./Section.module.css";
+
+const { title, kicker, intro, rule = false, id } = Astro.props;
+---
+<section id={id} class:list={["container", styles.section, rule && styles.withRule]}>
+  {rule && <hr class="rule" aria-hidden="true" />}
+  <div class={styles.header}>
+    {kicker && <p class="kicker">{kicker}</p>}
+    {title && <h2 class={styles.title}>{title}</h2>}
+    {intro && <p class={styles.intro}>{intro}</p>}
+  </div>
+  <div class={styles.content}>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,55 @@
+﻿---
+import "../styles/global.css";
+import styles from "./BaseLayout.module.css";
+import HeaderNav from "../components/HeaderNav.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+import DemoLayout from "./DemoLayout.astro";
+
+const { title, description, ogImage } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
+const metaDescription = description ?? site.description;
+const canonical = Astro.url.href;
+const siteUrl = new URL(import.meta.env.BASE_URL, Astro.site).toString();
+const ogImageUrl = ogImage ?? new URL("og-image.png", siteUrl).toString();
+const faviconUrl = new URL("favicon.svg", siteUrl).toString();
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={faviconUrl} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <!-- Non-indexed portfolio demo: intentionally no schema -->
+    <slot name="head" />
+  </head>
+  <body class={styles.page}>
+    <DemoLayout>
+      <a class={styles.skipLink} href="#main-content">Skip to content</a>
+      <HeaderNav />
+      <main id="main-content" class={styles.main}>
+        <slot />
+      </main>
+      <Footer />
+    </DemoLayout>
+  </body>
+</html>

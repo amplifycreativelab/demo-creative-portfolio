@@ -1,0 +1,73 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import FilterPills from "../../components/FilterPills.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { withBase } from "../../utils/paths";
+import styles from "./_index.module.css";
+
+const caseStudies = await getCollection("caseStudies");
+const featured = caseStudies.filter((entry) => entry.data.featured);
+const others = caseStudies.filter((entry) => !entry.data.featured);
+
+const categories = [
+  { label: "All", value: "all" },
+  { label: "Web", value: "web" },
+  { label: "Branding", value: "branding" },
+  { label: "Photography", value: "photography" },
+  { label: "Content", value: "content" },
+];
+---
+<BaseLayout title="Work" description="Editorial case studies across web, branding, photography, and content systems.">
+  <section class={styles.intro}>
+    <div class="container">
+      <p class="kicker">Work</p>
+      <h1>Case studies and collaborations.</h1>
+      <p class={styles.introText}>
+        Browse by discipline or scan the editorial list for outcomes, context, and results.
+      </p>
+      <FilterPills categories={categories} />
+    </div>
+  </section>
+
+  <Section kicker="Featured" title="Editors picks" intro="High-impact collaborations from this year.">
+    <div class={styles.featuredGrid}>
+      {featured.map((entry) => (
+        <CaseStudyCard entry={entry} />
+      ))}
+    </div>
+  </Section>
+
+  <section class={styles.listSection}>
+    <div class="container">
+      <div class={styles.list}>
+        {others.map((entry, index) => (
+          <article
+            class:list={[styles.row, index % 2 === 1 && styles.rowReverse]}
+            data-filter-item
+            data-category={entry.data.category}
+          >
+            <a class={styles.rowMedia} href={withBase(`work/${entry.slug}/`)}>
+              <Image src={entry.data.heroImage} alt={entry.data.title} width={960} height={720} loading="lazy" />
+            </a>
+            <div class={styles.rowContent}>
+              <p class={styles.rowMeta}>
+                <span class={styles.pill}>{entry.data.category}</span>
+                <span>{entry.data.client}</span>
+                <span>{entry.data.location}</span>
+              </p>
+              <h2 class={styles.rowTitle}>
+                <a href={withBase(`work/${entry.slug}/`)}>{entry.data.title}</a>
+              </h2>
+              <p class={styles.rowOutcome}>{entry.data.outcome}</p>
+              <p class={styles.rowLocation}>{entry.data.year}</p>
+              <a class={styles.rowLink} href={withBase(`work/${entry.slug}/`)}>Read case study</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

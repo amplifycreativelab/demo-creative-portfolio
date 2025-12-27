@@ -1,0 +1,32 @@
+﻿---
+import styles from "./CaseStudyCard.module.css";
+import { Image } from "astro:assets";
+import { withBase } from "../utils/paths";
+
+const { entry } = Astro.props;
+const href = withBase(`work/${entry.slug}/`);
+---
+<article class={styles.card} data-filter-item data-category={entry.data.category}>
+  <a class={styles.media} href={href}>
+    <Image
+      class={styles.image}
+      src={entry.data.heroImage}
+      alt={`${entry.data.client} project`}
+      width={720}
+      height={520}
+      loading="lazy"
+    />
+  </a>
+  <div class={styles.body}>
+    <p class={styles.meta}>
+      <span class={styles.pill}>{entry.data.category}</span>
+      <span>{entry.data.client}</span>
+      <span>{entry.data.location}</span>
+    </p>
+    <h3 class={styles.title}>
+      <a href={href}>{entry.data.title}</a>
+    </h3>
+    <p class={styles.outcome}>{entry.data.outcome}</p>
+    <a class={styles.readMore} href={href}>Read case study</a>
+  </div>
+</article>

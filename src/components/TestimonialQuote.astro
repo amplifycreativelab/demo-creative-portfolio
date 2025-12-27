@@ -1,0 +1,13 @@
+﻿---
+import styles from "./TestimonialQuote.module.css";
+
+const { quote, name, role, location } = Astro.props;
+---
+<figure class={styles.quote}>
+  <blockquote class={styles.text}>"{quote}"</blockquote>
+  <figcaption class={styles.caption}>
+    <span class={styles.name}>{name}</span>
+    <span class={styles.role}>{role}</span>
+    {location && <span class={styles.location}>{location}</span>}
+  </figcaption>
+</figure>

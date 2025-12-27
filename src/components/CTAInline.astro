@@ -1,0 +1,14 @@
+﻿---
+import styles from "./CTAInline.module.css";
+import Button from "./Button.astro";
+import { withBase } from "../utils/paths";
+
+const { title, text, ctaLabel = "Get a quote", href = "contact/" } = Astro.props;
+---
+<div class={styles.cta}>
+  <div>
+    <p class={styles.title}>{title}</p>
+    {text && <p class={styles.text}>{text}</p>}
+  </div>
+  <Button href={withBase(href)} variant="primary">{ctaLabel}</Button>
+</div>

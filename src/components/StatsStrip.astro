@@ -1,0 +1,14 @@
+﻿---
+import styles from "./StatsStrip.module.css";
+
+const { items } = Astro.props;
+---
+<div class={styles.strip}>
+  {items.map((item) => (
+    <div class={styles.item}>
+      <p class={styles.value}>{item.value}</p>
+      <p class={styles.label}>{item.label}</p>
+      <p class={styles.detail}>{item.detail}</p>
+    </div>
+  ))}
+</div>

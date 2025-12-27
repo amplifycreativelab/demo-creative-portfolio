@@ -1,0 +1,14 @@
+﻿---
+import styles from "./CaseStudySection.module.css";
+
+const { title, lead, items } = Astro.props;
+---
+<section class={styles.section}>
+  <h2 class={styles.title}>{title}</h2>
+  {lead && <p class={styles.lead}>{lead}</p>}
+  <ul class={styles.list}>
+    {items.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ul>
+</section>
