@@ -2,6 +2,10 @@
    ENHANCED HEADER NAVIGATION
    ============================================ */
 
+.headerWrapper {
+  /* Wrapper to contain header and mobile elements */
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -263,6 +267,9 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-slow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobileNavInner {
@@ -270,7 +277,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
   gap: var(--space-8);
   padding: var(--space-8);
 }
@@ -361,33 +368,33 @@
    OPEN STATE
    ============================================ */
 
-.header[data-state="open"] .menuText {
+.headerWrapper[data-state="open"] .menuText {
   display: none;
 }
 
-.header[data-state="open"] .menuTextOpen {
+.headerWrapper[data-state="open"] .menuTextOpen {
   display: inline;
 }
 
-.header[data-state="open"] .menuLine:nth-child(1) {
+.headerWrapper[data-state="open"] .menuLine:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
 
-.header[data-state="open"] .menuLine:nth-child(2) {
+.headerWrapper[data-state="open"] .menuLine:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.header[data-state="open"] .menuLine:nth-child(3) {
+.headerWrapper[data-state="open"] .menuLine:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.header[data-state="open"] .mobileNav {
+.headerWrapper[data-state="open"] .mobileNav {
   opacity: 1;
   pointer-events: auto;
 }
 
-.header[data-state="open"] .mobileOverlay {
+.headerWrapper[data-state="open"] .mobileOverlay {
   opacity: 1;
   pointer-events: auto;
 }
@@ -481,17 +488,17 @@
   }
 }
 
-.header[data-state="open"] .mobileLink {
+.headerWrapper[data-state="open"] .mobileLink {
   animation: slideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
 }
 
-.header[data-state="open"] .mobileLink:nth-child(1) { animation-delay: 0.1s; }
-.header[data-state="open"] .mobileLink:nth-child(2) { animation-delay: 0.15s; }
-.header[data-state="open"] .mobileLink:nth-child(3) { animation-delay: 0.2s; }
-.header[data-state="open"] .mobileLink:nth-child(4) { animation-delay: 0.25s; }
+.headerWrapper[data-state="open"] .mobileLink:nth-child(1) { animation-delay: 0.1s; }
+.headerWrapper[data-state="open"] .mobileLink:nth-child(2) { animation-delay: 0.15s; }
+.headerWrapper[data-state="open"] .mobileLink:nth-child(3) { animation-delay: 0.2s; }
+.headerWrapper[data-state="open"] .mobileLink:nth-child(4) { animation-delay: 0.25s; }
 
-.header[data-state="open"] .mobileCta {
+.headerWrapper[data-state="open"] .mobileCta {
   animation: slideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
   opacity: 0;
 }

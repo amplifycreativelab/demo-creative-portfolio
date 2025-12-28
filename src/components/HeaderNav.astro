@@ -4,177 +4,220 @@ import { navItems, site } from "../data/site";
 import { withBase } from "../utils/paths";
 ---
 
-<header class={styles.header} data-menu data-state="closed">
-  <!-- Progress Bar -->
-  <div class={styles.progressBar} id="scroll-progress"></div>
-  
-  <div class="container">
-    <div class={styles.inner}>
-      <!-- Logo -->
-      <a class={styles.logo} href={withBase("")} data-magnetic>
-        <span class={styles.logoText}>{site.name}</span>
-        <span class={styles.logoDot}></span>
-      </a>
-      
-      <!-- Desktop Navigation -->
-      <nav class={styles.nav} aria-label="Primary">
-        <div class={styles.links}>
-          {navItems.map((item, index) => (
-            <a 
-              class={styles.link} 
+<div class={styles.headerWrapper} data-menu data-state="closed">
+  <header class={styles.header}>
+    <!-- Progress Bar -->
+    <div class={styles.progressBar} id="scroll-progress"></div>
+
+    <div class="container">
+      <div class={styles.inner}>
+        <!-- Logo -->
+        <a class={styles.logo} href={withBase("")} data-magnetic>
+          <span class={styles.logoText}>{site.name}</span>
+          <span class={styles.logoDot}></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class={styles.nav} aria-label="Primary">
+          <div class={styles.links}>
+            {
+              navItems.map((item, index) => (
+                <a
+                  class={styles.link}
+                  href={withBase(item.href)}
+                  data-index={index}
+                >
+                  <span class={styles.linkText}>{item.label}</span>
+                  <span class={styles.linkUnderline} />
+                </a>
+              ))
+            }
+          </div>
+          <a class={styles.cta} href={withBase("contact/")}>
+            <span class={styles.ctaText}>{site.cta.primary}</span>
+            <span class={styles.ctaArrow}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+          class={styles.menuToggle}
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Toggle menu"
+          data-menu-toggle
+        >
+          <span class={styles.menuText}>Menu</span>
+          <span class={styles.menuTextOpen}>Close</span>
+          <span class={styles.menuIcon} aria-hidden="true">
+            <span class={styles.menuLine}></span>
+            <span class={styles.menuLine}></span>
+            <span class={styles.menuLine}></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay (outside header for proper z-index stacking) -->
+  <div class={styles.mobileOverlay} data-menu-overlay></div>
+
+  <!-- Mobile Navigation Panel (outside header for proper z-index stacking) -->
+  <nav
+    class={styles.mobileNav}
+    id="primary-nav"
+    aria-label="Primary"
+    data-menu-panel
+  >
+    <div class={styles.mobileNavInner}>
+      <div class={styles.mobileLinks}>
+        {
+          navItems.map((item, index) => (
+            <a
+              class={styles.mobileLink}
               href={withBase(item.href)}
               data-index={index}
             >
-              <span class={styles.linkText}>{item.label}</span>
-              <span class={styles.linkUnderline}></span>
+              <span class={styles.mobileLinkNumber}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class={styles.mobileLinkText}>{item.label}</span>
             </a>
-          ))}
-        </div>
-        <a class={styles.cta} href={withBase("contact/")}>
-          <span class={styles.ctaText}>{site.cta.primary}</span>
-          <span class={styles.ctaArrow}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </span>
-        </a>
-      </nav>
-      
-      <!-- Mobile Menu Toggle -->
-      <button
-        class={styles.menuToggle}
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-nav"
-        aria-label="Toggle menu"
-        data-menu-toggle
-      >
-        <span class={styles.menuText}>Menu</span>
-        <span class={styles.menuTextOpen}>Close</span>
-        <span class={styles.menuIcon} aria-hidden="true">
-          <span class={styles.menuLine}></span>
-          <span class={styles.menuLine}></span>
-          <span class={styles.menuLine}></span>
-        </span>
-      </button>
-    </div>
-  </div>
-  
-  <!-- Mobile Navigation Panel -->
-  <nav class={styles.mobileNav} id="primary-nav" aria-label="Primary" data-menu-panel>
-    <div class={styles.mobileNavInner}>
-      <div class={styles.mobileLinks}>
-        {navItems.map((item, index) => (
-          <a 
-            class={styles.mobileLink} 
-            href={withBase(item.href)}
-            data-index={index}
-          >
-            <span class={styles.mobileLinkNumber}>{String(index + 1).padStart(2, "0")}</span>
-            <span class={styles.mobileLinkText}>{item.label}</span>
-          </a>
-        ))}
+          ))
+        }
       </div>
       <a class={styles.mobileCta} href={withBase("contact/")}>
         <span>{site.cta.primary}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </a>
     </div>
   </nav>
-  
-  <!-- Mobile Overlay -->
-  <div class={styles.mobileOverlay} data-menu-overlay></div>
-</header>
+</div>
 
 <script>
-  const header = document.querySelector("[data-menu]") as HTMLElement | null;
-  if (header) {
-    const toggle = header.querySelector("[data-menu-toggle]");
-    const overlay = header.querySelector("[data-menu-overlay]");
-    const links = header.querySelectorAll("nav a");
-    const progressBar = document.getElementById("scroll-progress") as HTMLElement | null;
-    
+  const wrapper = document.querySelector("[data-menu]") as HTMLElement | null;
+  if (wrapper) {
+    const header = wrapper.querySelector("header") as HTMLElement | null;
+    const toggle = wrapper.querySelector("[data-menu-toggle]");
+    const overlay = wrapper.querySelector("[data-menu-overlay]");
+    const mobileNav = wrapper.querySelector("[data-menu-panel]");
+    const links = wrapper.querySelectorAll("nav a");
+    const progressBar = document.getElementById(
+      "scroll-progress",
+    ) as HTMLElement | null;
+
     // Menu Toggle
     const setOpen = (isOpen: boolean) => {
-      header.dataset.state = isOpen ? "open" : "closed";
+      wrapper.dataset.state = isOpen ? "open" : "closed";
       document.body.style.overflow = isOpen ? "hidden" : "";
-      if (toggle) toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      if (toggle)
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     };
-    
+
     if (toggle) {
       toggle.addEventListener("click", () => {
-        const isOpen = header.dataset.state !== "open";
+        const isOpen = wrapper.dataset.state !== "open";
         setOpen(isOpen);
       });
     }
-    
+
     if (overlay) {
       overlay.addEventListener("click", () => setOpen(false));
     }
-    
+
     links.forEach((link) => {
       link.addEventListener("click", () => setOpen(false));
     });
-    
+
     window.addEventListener("keydown", (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     });
-    
+
     window.addEventListener("resize", () => {
       if (window.innerWidth > 900) setOpen(false);
     });
-    
+
     // Scroll Progress Bar
     if (progressBar) {
       window.addEventListener("scroll", () => {
         const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
         progressBar.style.width = `${scrollPercent}%`;
       });
     }
-    
+
     // Magnetic Effect on Logo
-    const logo = header.querySelector('[data-magnetic]') as HTMLElement | null;
-    if (logo) {
-      logo.addEventListener("mousemove", (e: MouseEvent) => {
-        const rect = logo.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        logo.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-      });
-      
-      logo.addEventListener("mouseleave", () => {
-        logo.style.transform = "translate(0, 0)";
+    if (header) {
+      const logo = header.querySelector(
+        "[data-magnetic]",
+      ) as HTMLElement | null;
+      if (logo) {
+        logo.addEventListener("mousemove", (e: MouseEvent) => {
+          const rect = logo.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          logo.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+
+        logo.addEventListener("mouseleave", () => {
+          logo.style.transform = "translate(0, 0)";
+        });
+      }
+
+      // Link Hover Staggered Animation
+      const desktopLinks = header.querySelectorAll(
+        ".header-nav-module_css-link",
+      );
+      desktopLinks.forEach((link) => {
+        const linkEl = link as HTMLElement;
+        linkEl.addEventListener("mouseenter", () => {
+          const index = parseInt(linkEl.dataset.index || "0");
+          desktopLinks.forEach((otherLink, i) => {
+            const otherLinkEl = otherLink as HTMLElement;
+            const delay = Math.abs(i - index) * 50;
+            setTimeout(() => {
+              otherLinkEl.style.opacity = i === index ? "1" : "0.4";
+            }, delay);
+          });
+        });
+
+        linkEl.addEventListener("mouseleave", () => {
+          desktopLinks.forEach((otherLink) => {
+            const otherLinkEl = otherLink as HTMLElement;
+            otherLinkEl.style.opacity = "1";
+          });
+        });
       });
     }
-    
-    // Link Hover Staggered Animation
-    const desktopLinks = header.querySelectorAll('.header-nav-module_css-link');
-    desktopLinks.forEach((link) => {
-      const linkEl = link as HTMLElement;
-      linkEl.addEventListener("mouseenter", () => {
-        const index = parseInt(linkEl.dataset.index || '0');
-        desktopLinks.forEach((otherLink, i) => {
-          const otherLinkEl = otherLink as HTMLElement;
-          const delay = Math.abs(i - index) * 50;
-          setTimeout(() => {
-            otherLinkEl.style.opacity = i === index ? "1" : "0.4";
-          }, delay);
-        });
-      });
-      
-      linkEl.addEventListener("mouseleave", () => {
-        desktopLinks.forEach((otherLink) => {
-          const otherLinkEl = otherLink as HTMLElement;
-          otherLinkEl.style.opacity = "1";
-        });
-      });
-    });
   }
 </script>

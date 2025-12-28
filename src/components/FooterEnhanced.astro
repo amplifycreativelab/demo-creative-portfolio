@@ -5,19 +5,13 @@ import { withBase } from "../utils/paths";
 
 const year = new Date().getFullYear();
 const mainSiteUrl = "https://amplifycreativelab.com";
-
-declare global {
-  interface Window {
-    IntersectionObserver: any;
-  }
-}
 ---
 
-<footer class={styles.footer}>
+<footer class={styles.footer} data-footer>
   <!-- Decorative Background -->
   <div class={styles.footerBackground}></div>
   <div class={styles.gridPattern}></div>
-  
+
   <div class="container">
     <!-- Main Footer Content -->
     <div class={styles.content}>
@@ -28,7 +22,7 @@ declare global {
           <span class={styles.brandDot}></span>
         </div>
         <p class={styles.tagline}>{site.tagline}</p>
-        <p class={styles.meta}>Concept demo • Non-indexed portfolio</p>
+        <p class={styles.meta}>Concept demo &middot; Non-indexed portfolio</p>
         <a
           class={styles.externalLink}
           href={mainSiteUrl}
@@ -36,66 +30,115 @@ declare global {
           rel="nofollow noopener noreferrer"
         >
           <span>amplifycreativelab.com</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
             <polyline points="15 3 21 3 21 9"></polyline>
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg>
         </a>
       </div>
-      
+
       <!-- Center Column - Services -->
       <div class={styles.servicesSection}>
         <h3 class={styles.heading}>Services</h3>
         <div class={styles.servicesList}>
           {serviceHighlights.map((service, index) => (
             <div class={styles.serviceItem}>
-              <span class={styles.serviceNumber}>{String(index + 1).padStart(2, "0")}</span>
+              <span class={styles.serviceNumber}>
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <span class={styles.serviceName}>{service.title}</span>
             </div>
           ))}
         </div>
       </div>
-      
+
       <!-- Right Column - Navigation & Social -->
       <div class={styles.navSection}>
         <h3 class={styles.heading}>Navigation</h3>
         <div class={styles.navLinks}>
           <a class={styles.navLink} href={withBase("work/")}>
             <span>Work</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
           <a class={styles.navLink} href={withBase("services/")}>
             <span>Services</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
           <a class={styles.navLink} href={withBase("about/")}>
             <span>About</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
           <a class={styles.navLink} href={withBase("contact/")}>
             <span>Contact</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
         </div>
-        
-        <h3 class={styles.heading} style={{ marginTop: 'var(--space-5)' }}>Connect</h3>
+
+        <h3 class={styles.heading} style={{ marginTop: "var(--space-5)" }}>
+          Connect
+        </h3>
         <div class={styles.socialLinks}>
           {site.socials.map((social) => (
-            <a 
-              class={styles.socialLink} 
+            <a
+              class={styles.socialLink}
               href={social.href}
               target="_blank"
               rel="nofollow noopener noreferrer"
@@ -106,36 +149,45 @@ declare global {
         </div>
       </div>
     </div>
-    
+
     <!-- Bottom Bar -->
     <div class={styles.bottomBar}>
       <div class={styles.bottomLeft}>
-        <span class={styles.copyright}>© {year} {site.name}</span>
-        <span class={styles.separator}>•</span>
-        <span class={styles.location}>{site.areasServed.join(" • ")}</span>
+        <span class={styles.copyright}>&copy; {year} {site.name}</span>
+        <span class={styles.separator}>&middot;</span>
+        <span class={styles.location}>{site.areasServed.join(" / ")}</span>
       </div>
       <div class={styles.bottomRight}>
-        <a class={styles.privacyLink} href={withBase("privacy/")}>Privacy Policy</a>
+        <a class={styles.privacyLink} href={withBase("privacy/")}>
+          Privacy Policy
+        </a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // Footer reveal animation
-  const footer = document.querySelector('.footer-enhanced-module_css-footer');
+  // Footer reveal animation (progressive enhancement)
+  const footer = document.querySelector("[data-footer]") as HTMLElement | null;
+
   if (footer) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            footer.classList.add('footer-enhanced-module_css-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    observer.observe(footer);
+    if (!("IntersectionObserver" in window)) {
+      footer.dataset.visible = "true";
+    } else {
+      footer.dataset.animate = "true";
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            footer.dataset.visible = "true";
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      observer.observe(footer);
+    }
   }
 </script>

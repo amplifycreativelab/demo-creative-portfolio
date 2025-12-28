@@ -2,6 +2,10 @@
    ENHANCED HEADER NAVIGATION
    ============================================ */
 
+.headerWrapper {
+  /* Wrapper to contain header and mobile elements */
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -84,10 +88,13 @@
 }
 
 @keyframes logoPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(255, 107, 74, 0.4);
   }
+
   50% {
     transform: scale(1.2);
     box-shadow: 0 0 0 8px rgba(255, 107, 74, 0);
@@ -241,14 +248,22 @@
    ============================================ */
 
 .mobileNav {
-  display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: var(--color-paper);
-  z-index: 900;
+  z-index: 999;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-slow);
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+  overflow-y: auto;
+  display: none;
+  /* Hidden on desktop */
 }
 
 .mobileNavInner {
@@ -334,48 +349,59 @@
    ============================================ */
 
 .mobileOverlay {
-  display: none;
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-base);
-  z-index: 800;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+  z-index: 998;
+  display: none;
+  /* Hidden on desktop */
 }
 
 /* ============================================
    OPEN STATE
    ============================================ */
 
-.header[data-state="open"] .menuText {
+:global([data-state="open"]) .menuText {
   display: none;
 }
 
-.header[data-state="open"] .menuTextOpen {
+:global([data-state="open"]) .menuTextOpen {
   display: inline;
 }
 
-.header[data-state="open"] .menuLine:nth-child(1) {
+:global([data-state="open"]) .menuLine:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
 
-.header[data-state="open"] .menuLine:nth-child(2) {
+:global([data-state="open"]) .menuLine:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.header[data-state="open"] .menuLine:nth-child(3) {
+:global([data-state="open"]) .menuLine:nth-child(3) {
   transform: rotate(-45deg) translate(-5px, 5px);
 }
 
-.header[data-state="open"] .mobileNav {
+:global([data-state="open"]) .mobileNav {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-.header[data-state="open"] .mobileOverlay {
+:global([data-state="open"]) .mobileOverlay {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -387,7 +413,7 @@
   .nav {
     gap: var(--space-4);
   }
-  
+
   .links {
     gap: var(--space-4);
     font-size: 0.8rem;
@@ -398,14 +424,29 @@
   .menuToggle {
     display: inline-flex;
   }
-  
+
   .nav {
     display: none;
   }
-  
-  .mobileNav,
+
+  .mobileNav {
+    display: block;
+  }
+
   .mobileOverlay {
     display: block;
+  }
+
+  :global([data-state="open"]) .mobileNav {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  :global([data-state="open"]) .mobileOverlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
@@ -413,37 +454,37 @@
   .inner {
     gap: var(--space-4);
   }
-  
+
   .logo {
     font-size: 0.85rem;
   }
-  
+
   .menuToggle {
     padding: 8px 14px;
     font-size: 0.65rem;
   }
-  
+
   .mobileNavInner {
     gap: var(--space-6);
     padding: var(--space-6) var(--page-gutter);
   }
-  
+
   .mobileLinks {
     gap: var(--space-3);
   }
-  
+
   .mobileLink {
     padding: var(--space-3) var(--space-4);
   }
-  
+
   .mobileLinkNumber {
     font-size: var(--text-h4);
   }
-  
+
   .mobileLinkText {
     font-size: var(--text-h3);
   }
-  
+
   .mobileCta {
     padding: 16px 32px;
     font-size: var(--text-micro);

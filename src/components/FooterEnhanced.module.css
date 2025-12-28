@@ -44,13 +44,17 @@
   display: grid;
   grid-template-columns: 1.5fr 1fr 1.2fr;
   gap: var(--space-8);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer.visible .content {
+.footer[data-animate="true"] .content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer[data-animate="true"][data-visible="true"] .content {
   opacity: 1;
   transform: translateY(0);
 }
@@ -409,17 +413,17 @@
   }
 }
 
-.footer.visible .brandSection {
+.footer[data-animate="true"][data-visible="true"] .brandSection {
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
   opacity: 0;
 }
 
-.footer.visible .servicesSection {
+.footer[data-animate="true"][data-visible="true"] .servicesSection {
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
   opacity: 0;
 }
 
-.footer.visible .navSection {
+.footer[data-animate="true"][data-visible="true"] .navSection {
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
   opacity: 0;
 }

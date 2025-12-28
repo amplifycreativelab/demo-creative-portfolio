@@ -1,5 +1,7 @@
 ---
+import heroImage from "../assets/images/projects/scarborough-food-studio/hero.webp";
 ---
+
 <section class="hero">
   <!-- Ambient Background Effects -->
   <div class="heroBackground">
@@ -17,31 +19,41 @@
           <span class="badgeDot"></span>
           <span class="badgeText">Available for projects</span>
         </div>
-        
+
         <h1 class="heroTitle">
           <span class="titleLine line1">We craft digital</span>
           <span class="titleLine line2">experiences that</span>
           <span class="titleLine line3">convert & inspire</span>
         </h1>
-        
+
         <p class="heroDescription">
-          A creative design studio specializing in brand identity, 
-          digital experiences, and strategic design solutions that 
-          help businesses stand out and grow.
+          A creative design studio specializing in brand identity, digital
+          experiences, and strategic design solutions that help businesses stand
+          out and grow.
         </p>
-        
+
         <div class="heroActions">
           <a href="/work/" class="button button-primary button-xl">
             <span class="buttonContent">
               <span class="buttonText">View Our Work</span>
-              <svg class="buttonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                class="buttonIcon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </span>
             <span class="buttonFill"></span>
           </a>
-          
+
           <a href="/contact/" class="button button-secondary button-xl">
             <span class="buttonContent">
               <span class="buttonText">Get in Touch</span>
@@ -54,19 +66,27 @@
       <div class="heroImage">
         <div class="imageWrapper">
           <div class="imageContainer">
-            <img 
-              src="/src/assets/images/hero-editorial.png" 
+            <img
+              src={heroImage.src}
               alt="Creative design work showcase"
               class="heroImg"
               loading="eager"
             />
-            <div class="imageOverlay"></div>
           </div>
-          
+
           <!-- Floating Badge -->
           <div class="floatingBadge">
             <div class="badgeIcon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
               </svg>
             </div>
@@ -118,15 +138,20 @@
   .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
+    filter: blur(40px);
+    opacity: 0.04;
     animation: orbFloat 20s ease-in-out infinite;
+    z-index: 0;
   }
 
   .orb1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(255, 107, 74, 0.3) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 107, 74, 0.3) 0%,
+      transparent 70%
+    );
     top: -200px;
     right: -100px;
     animation-delay: 0s;
@@ -135,7 +160,11 @@
   .orb2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(74, 108, 247, 0.25) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(74, 108, 247, 0.25) 0%,
+      transparent 70%
+    );
     bottom: -150px;
     left: -150px;
     animation-delay: -7s;
@@ -144,7 +173,11 @@
   .orb3 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(255, 107, 74, 0.15) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 107, 74, 0.15) 0%,
+      transparent 70%
+    );
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -152,7 +185,8 @@
   }
 
   @keyframes orbFloat {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0, 0) scale(1);
     }
     25% {
@@ -220,7 +254,8 @@
   }
 
   @keyframes badgePulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -328,6 +363,7 @@
 
   .heroImage {
     position: relative;
+    z-index: 10;
     opacity: 0;
     transform: translateY(40px) rotate(-2deg);
     animation: imageReveal 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
@@ -348,7 +384,7 @@
     position: relative;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: 
+    box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.25),
       0 0 0 1px rgba(0, 0, 0, 0.05);
     transform: rotate(-2deg);
@@ -370,18 +406,6 @@
     transform: scale(1.05);
   }
 
-  .imageOverlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 107, 74, 0.1) 0%,
-      transparent 50%,
-      rgba(74, 108, 247, 0.1) 100%
-    );
-    pointer-events: none;
-  }
-
   /* ============================================
      FLOATING BADGE
      ============================================ */
@@ -396,7 +420,7 @@
     padding: var(--space-3) var(--space-4);
     background: white;
     border-radius: var(--radius-lg);
-    box-shadow: 
+    box-shadow:
       0 20px 40px -10px rgba(0, 0, 0, 0.2),
       0 0 0 1px rgba(0, 0, 0, 0.05);
     z-index: 10;
@@ -404,7 +428,8 @@
   }
 
   @keyframes badgeFloat {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -456,7 +481,8 @@
     align-items: center;
     gap: var(--space-3);
     opacity: 0;
-    animation: scrollIndicatorReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+    animation: scrollIndicatorReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.2s
+      forwards;
   }
 
   @keyframes scrollIndicatorReveal {
@@ -663,8 +689,8 @@
 
 <script>
   // Parallax effect for orbs
-  document.addEventListener('mousemove', (e) => {
-    const orbs = document.querySelectorAll('.orb') as NodeListOf<HTMLElement>;
+  document.addEventListener("mousemove", (e) => {
+    const orbs = document.querySelectorAll(".orb") as NodeListOf<HTMLElement>;
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
 
