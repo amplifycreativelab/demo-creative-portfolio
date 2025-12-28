@@ -1,94 +1,341 @@
-﻿.hero {
-  padding-bottom: var(--space-6);
+﻿/* ============================================
+   SERVICES PAGE - ENHANCED STYLES
+   ============================================ */
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+  padding: var(--space-10) 0 var(--space-8);
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(ellipse at top right, rgba(255, 107, 74, 0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .heroText {
+  font-size: 1.2rem;
+  line-height: var(--leading-relaxed);
   color: var(--color-muted);
   max-width: 640px;
 }
 
+/* ============================================
+   CARDS GRID
+   ============================================ */
+
 .cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
+/* ============================================
+   CARD ITEM
+   ============================================ */
+
 .card {
-  padding: var(--space-5);
+  padding: var(--space-6);
   border: 1px solid var(--color-rule);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--color-surface);
-  display: grid;
-  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
 .card::after {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 16px;
   border: 1px dashed rgba(23, 18, 15, 0.08);
   border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 40px -20px rgba(255, 107, 74, 0.2);
+  transform: translateY(-4px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin: 0;
+  color: var(--color-deep);
+  position: relative;
+  z-index: 1;
 }
 
 .card p {
+  font-size: 1rem;
+  line-height: var(--leading-normal);
   color: var(--color-muted);
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .cardMeta {
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
 }
+
+/* ============================================
+   BUNDLES GRID
+   ============================================ */
 
 .bundles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
+/* ============================================
+   BUNDLE ITEM
+   ============================================ */
+
 .bundle {
-  padding: var(--space-5);
+  padding: var(--space-6);
   border: 1px solid var(--color-rule);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(140deg, rgba(15, 118, 110, 0.08), rgba(255, 250, 243, 0.95));
-  display: grid;
-  gap: var(--space-2);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(255, 107, 74, 0.05) 0%, rgba(74, 108, 247, 0.05) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.bundle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 107, 74, 0.1) 0%, rgba(74, 108, 247, 0.1) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.bundle:hover {
+  border-color: var(--color-secondary);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(74, 108, 247, 0.2);
+}
+
+.bundle:hover::before {
+  opacity: 1;
+}
+
+.bundle h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--color-deep);
+  position: relative;
+  z-index: 1;
+}
+
+.bundle p {
+  font-size: 1rem;
+  line-height: var(--leading-normal);
+  color: var(--color-muted);
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .bundleMeta {
+  font-size: 0.9rem;
   color: var(--color-muted);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
 }
 
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+
 .faq {
-  display: grid;
-  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .faq details {
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-lg);
-  padding: var(--space-3);
+  padding: var(--space-4);
   background: var(--color-surface);
+  transition: all var(--transition-base);
+}
+
+.faq details:hover {
+  border-color: var(--color-accent);
+}
+
+.faq details[open] {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, rgba(255, 107, 74, 0.02) 0%, var(--color-surface) 100%);
 }
 
 .faq summary {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
   font-weight: 600;
+  color: var(--color-deep);
   cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  transition: transform var(--transition-fast);
+}
+
+.faq details[open] summary::after {
+  content: "−";
+  transform: rotate(180deg);
 }
 
 .faq p {
-  margin: var(--space-2) 0 0;
+  margin: var(--space-3) 0 0;
+  font-size: 1rem;
+  line-height: var(--leading-normal);
   color: var(--color-muted);
 }
 
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
 .cta {
-  padding-bottom: var(--space-7);
+  padding: var(--space-10) 0 var(--space-8);
+  position: relative;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 200px;
+  background: radial-gradient(ellipse at bottom, rgba(255, 107, 74, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .cards,
+  .bundles {
+    gap: var(--space-5);
+  }
+
+  .card,
+  .bundle {
+    padding: var(--space-5);
+  }
 }
 
 @media (max-width: 900px) {
   .cards,
   .bundles {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--space-8) 0 var(--space-6);
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+  }
+
+  .card,
+  .bundle {
+    padding: var(--space-4);
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .bundle h3 {
+    font-size: 1.3rem;
+  }
+
+  .faq details {
+    padding: var(--space-3);
+  }
+
+  .faq summary {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  .card::after,
+  .bundle::before {
+    inset: 12px;
   }
 }

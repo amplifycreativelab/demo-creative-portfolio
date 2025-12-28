@@ -1,10 +1,16 @@
 ---
-import styles from "./Footer.module.css";
+import styles from "./FooterEnhanced.module.css";
 import { site, serviceHighlights } from "../data/site";
 import { withBase } from "../utils/paths";
 
 const year = new Date().getFullYear();
 const mainSiteUrl = "https://amplifycreativelab.com";
+
+declare global {
+  interface Window {
+    IntersectionObserver: any;
+  }
+}
 ---
 
 <footer class={styles.footer}>
@@ -117,13 +123,13 @@ const mainSiteUrl = "https://amplifycreativelab.com";
 
 <script>
   // Footer reveal animation
-  const footer = document.querySelector('.footer-module_css-footer');
+  const footer = document.querySelector('.footer-enhanced-module_css-footer');
   if (footer) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            footer.classList.add('footer-module_css-visible');
+            footer.classList.add('footer-enhanced-module_css-visible');
           }
         });
       },

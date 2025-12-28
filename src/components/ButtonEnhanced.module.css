@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    ENHANCED BUTTON COMPONENT
    ============================================ */
 
@@ -113,6 +113,57 @@
 
 .secondary .buttonFill {
   background: var(--color-accent);
+}
+
+/* ============================================
+   OUTLINE VARIANT
+   ============================================ */
+
+.outline {
+  background: transparent;
+  color: var(--color-accent);
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-accent);
+}
+
+.outline:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+.outline .buttonFill {
+  background: white;
+}
+
+/* ============================================
+   GHOST VARIANT
+   ============================================ */
+
+.ghost {
+  background: transparent;
+  color: var(--color-ink);
+  padding: 12px 24px;
+  border-radius: 0;
+}
+
+.ghost::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.ghost:hover::after {
+  width: 100%;
+}
+
+.ghost .buttonFill {
+  display: none;
 }
 
 /* ============================================

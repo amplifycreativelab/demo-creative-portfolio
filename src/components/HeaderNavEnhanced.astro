@@ -1,5 +1,5 @@
-﻿---
-import styles from "./HeaderNav.module.css";
+---
+import styles from "./HeaderNavEnhanced.module.css";
 import { navItems, site } from "../data/site";
 import { withBase } from "../utils/paths";
 ---
@@ -155,7 +155,7 @@ import { withBase } from "../utils/paths";
     }
     
     // Link Hover Staggered Animation
-    const desktopLinks = header.querySelectorAll('.header-nav-module_css-link');
+    const desktopLinks = header.querySelectorAll('.header-nav-enhanced-module_css-link');
     desktopLinks.forEach((link) => {
       const linkEl = link as HTMLElement;
       linkEl.addEventListener("mouseenter", () => {

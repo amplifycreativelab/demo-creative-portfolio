@@ -1,0 +1,678 @@
+---
+---
+<section class="hero">
+  <!-- Ambient Background Effects -->
+  <div class="heroBackground">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grainOverlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="heroContent">
+      <!-- Left Column - Text -->
+      <div class="heroText">
+        <div class="badge">
+          <span class="badgeDot"></span>
+          <span class="badgeText">Available for projects</span>
+        </div>
+        
+        <h1 class="heroTitle">
+          <span class="titleLine line1">We craft digital</span>
+          <span class="titleLine line2">experiences that</span>
+          <span class="titleLine line3">convert & inspire</span>
+        </h1>
+        
+        <p class="heroDescription">
+          A creative design studio specializing in brand identity, 
+          digital experiences, and strategic design solutions that 
+          help businesses stand out and grow.
+        </p>
+        
+        <div class="heroActions">
+          <a href="/work/" class="button button-primary button-xl">
+            <span class="buttonContent">
+              <span class="buttonText">View Our Work</span>
+              <svg class="buttonIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+            <span class="buttonFill"></span>
+          </a>
+          
+          <a href="/contact/" class="button button-secondary button-xl">
+            <span class="buttonContent">
+              <span class="buttonText">Get in Touch</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column - Image -->
+      <div class="heroImage">
+        <div class="imageWrapper">
+          <div class="imageContainer">
+            <img 
+              src="/src/assets/images/hero-editorial.png" 
+              alt="Creative design work showcase"
+              class="heroImg"
+              loading="eager"
+            />
+            <div class="imageOverlay"></div>
+          </div>
+          
+          <!-- Floating Badge -->
+          <div class="floatingBadge">
+            <div class="badgeIcon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div class="badgeContent">
+              <span class="badgeValue">150+</span>
+              <span class="badgeLabel">Projects Delivered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scrollIndicator">
+    <span class="scrollText">Scroll to explore</span>
+    <div class="scrollLine">
+      <div class="scrollDot"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================
+     HERO SECTION
+     ============================================ */
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-8) 0 var(--space-12);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  /* ============================================
+     AMBIENT BACKGROUND
+     ============================================ */
+
+  .heroBackground {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: orbFloat 20s ease-in-out infinite;
+  }
+
+  .orb1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 107, 74, 0.3) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    animation-delay: 0s;
+  }
+
+  .orb2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(74, 108, 247, 0.25) 0%, transparent 70%);
+    bottom: -150px;
+    left: -150px;
+    animation-delay: -7s;
+  }
+
+  .orb3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 107, 74, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -14s;
+  }
+
+  @keyframes orbFloat {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(30px, -30px) scale(1.05);
+    }
+    50% {
+      transform: translate(-20px, 20px) scale(0.95);
+    }
+    75% {
+      transform: translate(-30px, -20px) scale(1.02);
+    }
+  }
+
+  .grainOverlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* ============================================
+     HERO CONTENT
+     ============================================ */
+
+  .heroContent {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .heroText {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* ============================================
+     BADGE
+     ============================================ */
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 107, 74, 0.1);
+    border: 1px solid rgba(255, 107, 74, 0.2);
+    border-radius: var(--radius-pill);
+    width: fit-content;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: badgeReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  }
+
+  .badgeDot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    animation: badgePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .badgeText {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  @keyframes badgeReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================
+     HERO TITLE
+     ============================================ */
+
+  .heroTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-deep);
+    margin: 0;
+  }
+
+  .titleLine {
+    display: block;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .line1 {
+    animation: lineReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  }
+
+  .line2 {
+    animation: lineReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  }
+
+  .line3 {
+    animation: lineReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+    color: var(--color-accent);
+  }
+
+  @keyframes lineReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================
+     HERO DESCRIPTION
+     ============================================ */
+
+  .heroDescription {
+    font-size: 1.2rem;
+    line-height: var(--leading-relaxed);
+    color: var(--color-muted);
+    max-width: 500px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: descriptionReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+  }
+
+  @keyframes descriptionReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================
+     HERO ACTIONS
+     ============================================ */
+
+  .heroActions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: actionsReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+  }
+
+  @keyframes actionsReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================
+     HERO IMAGE
+     ============================================ */
+
+  .heroImage {
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px) rotate(-2deg);
+    animation: imageReveal 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  }
+
+  @keyframes imageReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0) rotate(-2deg);
+    }
+  }
+
+  .imageWrapper {
+    position: relative;
+  }
+
+  .imageContainer {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+    transform: rotate(-2deg);
+    transition: transform var(--transition-slow);
+  }
+
+  .imageContainer:hover {
+    transform: rotate(-2deg) scale(1.02);
+  }
+
+  .heroImg {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .imageContainer:hover .heroImg {
+    transform: scale(1.05);
+  }
+
+  .imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 74, 0.1) 0%,
+      transparent 50%,
+      rgba(74, 108, 247, 0.1) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ============================================
+     FLOATING BADGE
+     ============================================ */
+
+  .floatingBadge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 
+      0 20px 40px -10px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    animation: badgeFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes badgeFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .badgeIcon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    color: white;
+    border-radius: var(--radius-md);
+  }
+
+  .badgeContent {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badgeValue {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-deep);
+  }
+
+  .badgeLabel {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-top: 2px;
+  }
+
+  /* ============================================
+     SCROLL INDICATOR
+     ============================================ */
+
+  .scrollIndicator {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    opacity: 0;
+    animation: scrollIndicatorReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+  }
+
+  @keyframes scrollIndicatorReveal {
+    to {
+      opacity: 1;
+    }
+  }
+
+  .scrollText {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .scrollLine {
+    width: 1px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scrollDot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 2px;
+    animation: scrollDot 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDot {
+    0% {
+      top: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 40px;
+      opacity: 0;
+    }
+  }
+
+  /* ============================================
+     BUTTON STYLES
+     ============================================ */
+
+  .button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    overflow: hidden;
+  }
+
+  .button-primary {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+  }
+
+  .button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(255, 107, 74, 0.5);
+  }
+
+  .button-secondary {
+    background: transparent;
+    color: var(--color-deep);
+    border: 2px solid var(--color-deep);
+  }
+
+  .button-secondary:hover {
+    background: var(--color-deep);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .button-xl {
+    padding: var(--space-4) var(--space-8);
+    font-size: 1.1rem;
+  }
+
+  .buttonContent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .buttonIcon {
+    transition: transform var(--transition-fast);
+  }
+
+  .button:hover .buttonIcon {
+    transform: translateX(4px);
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+
+  @media (max-width: 1024px) {
+    .heroContent {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .heroImage {
+      order: -1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .heroTitle {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .heroDescription {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--space-6) 0 var(--space-10);
+    }
+
+    .orb1,
+    .orb2,
+    .orb3 {
+      width: 300px;
+      height: 300px;
+    }
+
+    .heroActions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .floatingBadge {
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .badgeIcon {
+      width: 36px;
+      height: 36px;
+    }
+
+    .badgeValue {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: var(--space-5) 0 var(--space-8);
+    }
+
+    .badge {
+      padding: var(--space-2) var(--space-3);
+      font-size: 0.85rem;
+    }
+
+    .heroTitle {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+    }
+
+    .heroDescription {
+      font-size: 1rem;
+    }
+
+    .scrollIndicator {
+      bottom: var(--space-6);
+    }
+
+    .scrollLine {
+      height: 40px;
+    }
+  }
+</style>
+
+<script>
+  // Parallax effect for orbs
+  document.addEventListener('mousemove', (e) => {
+    const orbs = document.querySelectorAll('.orb') as NodeListOf<HTMLElement>;
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+
+    orbs.forEach((orb, index) => {
+      const speed = (index + 1) * 20;
+      const xOffset = (x - 0.5) * speed;
+      const yOffset = (y - 0.5) * speed;
+      orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+    });
+  });
+</script>

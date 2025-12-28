@@ -1,78 +1,243 @@
-﻿.body {
-  padding-bottom: var(--space-8);
+﻿/* ============================================
+   CASE STUDY DETAIL PAGE - ENHANCED STYLES
+   ============================================ */
+
+/* ============================================
+   BODY SECTION
+   ============================================ */
+
+.body {
+  padding-bottom: var(--space-10);
+  position: relative;
 }
+
+.body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(ellipse at top left, rgba(74, 108, 247, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
 
 .main {
   grid-column: span 8;
-  display: grid;
-  gap: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
 }
 
 .sections {
-  display: grid;
-  gap: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
 
 .results,
 .gallery,
 .deliverables {
-  display: grid;
-  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .results {
-  padding: var(--space-4);
+  padding: var(--space-6);
   border: 1px solid var(--color-rule);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.results::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle at top right, rgba(255, 107, 74, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.results h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin: 0;
+  color: var(--color-deep);
+  position: relative;
+  z-index: 1;
 }
 
 .results p {
+  font-size: 1.1rem;
+  line-height: var(--leading-relaxed);
   color: var(--color-muted);
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+
+.gallery h2,
+.deliverables h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin: 0;
+  color: var(--color-deep);
+}
+
+/* ============================================
+   DELIVERABLES SECTION
+   ============================================ */
+
 .deliverables {
-  padding: var(--space-4);
+  padding: var(--space-6);
   border: 1px solid var(--color-rule);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.deliverables::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-accent) 100%);
 }
 
 .deliverableGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+  gap: var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+
+.deliverableGroup {
+  padding: var(--space-4);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  transition: all var(--transition-base);
+}
+
+.deliverableGroup:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(255, 107, 74, 0.15);
 }
 
 .deliverableGroup ul {
   margin: 0;
-  padding-left: 1.2rem;
-  display: grid;
-  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.deliverableGroup li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.95rem;
+  line-height: var(--leading-normal);
   color: var(--color-ink-soft);
 }
 
+.deliverableGroup li::before {
+  content: "•";
+  color: var(--color-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
 .groupLabel {
-  margin: 0 0 var(--space-1);
-  font-size: var(--text-caption);
+  margin: 0 0 var(--space-3);
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--color-muted);
+  font-weight: 600;
 }
+
+/* ============================================
+   SECONDARY CTA
+   ============================================ */
 
 .secondaryCta {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   flex-wrap: wrap;
+  padding: var(--space-5);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
 }
 
 .availability {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--color-accent);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.availability::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.availability:hover {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .main {
+    grid-column: span 9;
+  }
 }
 
 @media (max-width: 900px) {
@@ -82,5 +247,63 @@
 
   .deliverableGrid {
     grid-template-columns: 1fr;
+  }
+
+  .results,
+  .deliverables {
+    padding: var(--space-5);
+  }
+
+  .results h2,
+  .gallery h2,
+  .deliverables h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .body {
+    padding-bottom: var(--space-8);
+  }
+
+  .main {
+    gap: var(--space-6);
+  }
+
+  .sections {
+    gap: var(--space-5);
+  }
+
+  .results,
+  .gallery,
+  .deliverables {
+    gap: var(--space-3);
+  }
+
+  .results p {
+    font-size: 1rem;
+  }
+
+  .secondaryCta {
+    padding: var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .results,
+  .deliverables {
+    padding: var(--space-4);
+  }
+
+  .results h2,
+  .gallery h2,
+  .deliverables h2 {
+    font-size: 1.2rem;
+  }
+
+  .deliverableGroup {
+    padding: var(--space-3);
   }
 }

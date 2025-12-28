@@ -1,8 +1,8 @@
-﻿---
+---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
-import Button from "../components/Button.astro";
-import CaseStudyCard from "../components/CaseStudyCard.astro";
+import ButtonEnhanced from "../components/ButtonEnhanced.astro";
+import CaseStudyCardEnhanced from "../components/CaseStudyCardEnhanced.astro";
 import StatsStrip from "../components/StatsStrip.astro";
 import TestimonialQuote from "../components/TestimonialQuote.astro";
 import HeroEnhanced from "../components/HeroEnhanced.astro";
@@ -10,15 +10,18 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { site, serviceHighlights, processSteps, metrics } from "../data/site";
 import { withBase } from "../utils/paths";
-import styles from "./_index.module.css";
+import "../styles/global-enhanced.css";
+import styles from "./_index-enhanced.module.css";
 
 const caseStudies = await getCollection("caseStudies");
 const featured = caseStudies.filter((entry) => entry.data.featured);
 ---
 
 <BaseLayout>
+  <!-- Hero Section -->
   <HeroEnhanced />
 
+  <!-- Featured Work Section -->
   <Section
     kicker="Editor's Picks"
     title="Featured Work"
@@ -26,11 +29,15 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
   >
     <div class={styles.featuredGrid}>
       {featured.map((entry, index) => (
-        <CaseStudyCard entry={entry} featured={index === 0} />
+        <CaseStudyCardEnhanced 
+          entry={entry} 
+          featured={index === 0}
+        />
       ))}
     </div>
   </Section>
 
+  <!-- Services Section -->
   <Section
     kicker="What We Do"
     title="Editorial Services"
@@ -62,6 +69,7 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
     </div>
   </Section>
 
+  <!-- Process Section -->
   <section class={styles.process}>
     <div class="container">
       <div class={styles.processHeader}>
@@ -82,6 +90,7 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
     </div>
   </section>
 
+  <!-- Metrics Section -->
   <section class={styles.metrics}>
     <div class="container">
       <div class={styles.metricsInner}>
@@ -94,6 +103,7 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
     </div>
   </section>
 
+  <!-- Testimonial Section -->
   <Section kicker="Testimonial" title="Client Note">
     <TestimonialQuote
       quote="Creative Portfolio brought clarity and pace. The work feels premium and performs."
@@ -103,6 +113,7 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
     />
   </Section>
 
+  <!-- CTA Section -->
   <section class={styles.ctaBand}>
     <div class="container">
       <div class={styles.ctaInner}>
@@ -111,9 +122,9 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
           <h2>Plan a project that delivers on story and performance.</h2>
         </div>
         <div class={styles.ctaActions}>
-          <Button href={withBase("contact/")} variant="primary" size="lg">
+          <ButtonEnhanced href={withBase("contact/")} variant="primary" size="lg">
             Start a Project
-          </Button>
+          </ButtonEnhanced>
           <a
             class={styles.ctaEmail}
             href="https://amplifycreativelab.com"
@@ -156,14 +167,14 @@ const featured = caseStudies.filter((entry) => entry.data.featured);
     });
     
     // Service items stagger animation
-    const serviceItems = document.querySelectorAll('.index-module_css-serviceItem');
+    const serviceItems = document.querySelectorAll('.index-enhanced-module_css-serviceItem');
     serviceItems.forEach((item, index) => {
       const itemEl = item as HTMLElement;
       itemEl.style.animationDelay = `${index * 0.1}s`;
     });
     
     // Process items stagger animation
-    const processItems = document.querySelectorAll('.index-module_css-processItem');
+    const processItems = document.querySelectorAll('.index-enhanced-module_css-processItem');
     processItems.forEach((item, index) => {
       const itemEl = item as HTMLElement;
       itemEl.style.animationDelay = `${index * 0.15}s`;

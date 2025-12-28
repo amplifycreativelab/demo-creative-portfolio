@@ -1,12 +1,11 @@
-﻿---
-import styles from "./CaseStudyCard.module.css";
+---
+import styles from "./CaseStudyCardEnhanced.module.css";
 import { Image } from "astro:assets";
 import { withBase } from "../utils/paths";
 
 const { entry, featured = false } = Astro.props;
 const href = withBase(`work/${entry.slug}/`);
 const cardClass = featured ? `${styles.card} ${styles.featured}` : styles.card;
-const index = entry.data.index || 1;
 ---
 <article class={cardClass} data-filter-item data-category={entry.data.category}>
   <a class={styles.media} href={href}>
@@ -22,7 +21,7 @@ const index = entry.data.index || 1;
       <div class={styles.imageOverlay}></div>
       <div class={styles.imageGlow}></div>
     </div>
-    <div class={styles.number}>{String(index).padStart(2, "0")}</div>
+    <div class={styles.number}>{String(entry.data.index || "01").padStart(2, "0")}</div>
   </a>
   <div class={styles.body}>
     <p class={styles.meta}>
