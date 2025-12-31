@@ -1,5 +1,6 @@
 ---
 import heroImage from "../assets/images/projects/scarborough-food-studio/hero.webp";
+import { withBase } from "../utils/paths";
 ---
 
 <section class="hero">
@@ -33,7 +34,7 @@ import heroImage from "../assets/images/projects/scarborough-food-studio/hero.we
         </p>
 
         <div class="heroActions">
-          <a href="/work/" class="button button-primary button-xl">
+          <a href={withBase("work/")} class="button button-primary button-xl">
             <span class="buttonContent">
               <span class="buttonText">View Our Work</span>
               <svg
@@ -54,7 +55,10 @@ import heroImage from "../assets/images/projects/scarborough-food-studio/hero.we
             <span class="buttonFill"></span>
           </a>
 
-          <a href="/contact/" class="button button-secondary button-xl">
+          <a
+            href={withBase("contact/")}
+            class="button button-secondary button-xl"
+          >
             <span class="buttonContent">
               <span class="buttonText">Get in Touch</span>
             </span>
